@@ -1,0 +1,40 @@
+name: CD
+
+# Deploy de verificacao: sobe um cluster kind efemero DENTRO do runner, aplica os manifests e valida o rollout.
+# (O runner hospedado nao enxerga o cluster da maquina local; por isso o deploy e feito em kind efemero.)
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: alunostech-hub
+
+jobs:
+  deploy-kind:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: helm/kind-action@v1
+        with:
+          cluster_name: alunostech
+      - name: Build e carga da imagem no cluster
+        run: |
+          docker build -f infra/docker/Dockerfile.api -t alunostech-api:latest .
+          kind load docker-image alunostech-api:latest --name alunostech
+      - name: Aplicar manifests
+        run: |
+          kubectl apply -f infra/k8s/alunostech.yaml
+          kubectl -n alunostech create secret generic alunostech-secrets \
+            --from-literal=sa-password='Cd#Pass2026Strong!' \
+            --from-literal=jwt-key="$(openssl rand -hex 32)"
+      - name: Aguardar rollout
+        run: |
+          kubectl -n alunostech rollout status statefulset/sqlserver --timeout=300s
+          kubectl -n alunostech rollout status deployment/api --timeout=300s
+      - name: Estado final
+        run: kubectl -n alunostech get pods,svc,hpa
