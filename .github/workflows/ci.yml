@@ -69,6 +69,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # o gitleaks varre o intervalo de commits do push
       - name: Build da imagem
         run: docker build -f infra/docker/Dockerfile.api -t alunostech-api:${{ github.sha }} .
       - name: Scan de vulnerabilidades (Trivy)
