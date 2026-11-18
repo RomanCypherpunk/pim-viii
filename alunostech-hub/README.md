@@ -119,8 +119,8 @@ sqlcmd -S localhost -U sa -P <senha> -C -d AlunosTech -i database/performance/05
 
 ## O que foi e o que não foi validado
 
-Validado por execução: 27 testes .NET e 3 Flutter; scripts SQL aplicados em SQL Server 2022; roteiro funcional da API (local e no cluster kind); concorrência com duas sessões; otimização de consulta com 500 mil registros; build da imagem Docker; autoescalonamento (HPA de 2 para 6 réplicas sob carga); coleta de métricas no Prometheus (6 pods `up`); telas web, desktop e mobile (este em navegador).
+Validado por execução: 27 testes .NET e 3 Flutter; scripts SQL aplicados em SQL Server 2022; roteiro funcional da API (local e no cluster kind); concorrência com duas sessões; otimização de consulta com 500 mil registros; build da imagem Docker; autoescalonamento (HPA de 2 para 6 réplicas sob carga); coleta de métricas no Prometheus (6 pods `up`); pipelines CI e CD no GitHub Actions (build, 27 testes, migração em SQL Server real, Flutter, Trivy sem achados altos/críticos, gitleaks, imagem no GHCR e rollout em kind efêmero); telas web, desktop e mobile (este em navegador).
 
-**Não validado / proposto:** execução dos workflows no GitHub Actions (e varreduras Trivy/gitleaks), Grafana, aplicação efetiva da `NetworkPolicy`, execução do app em dispositivo Android e implantação em nuvem pública.
+**Não validado / proposto:** Grafana, aplicação efetiva da `NetworkPolicy`, execução do app em dispositivo Android e implantação em nuvem pública.
 
 Em desenvolvimento a API conecta com o usuário `sa`; em produção deve usar o papel `role_alunostech_app` criado em `database/security/040_seguranca.sql`.
