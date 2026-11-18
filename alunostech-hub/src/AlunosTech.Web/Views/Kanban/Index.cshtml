@@ -1,0 +1,38 @@
+@using AlunosTech.Web.Controllers
+@model List<AlunosTech.Web.Services.TarefaVm>
+@{ ViewData["Title"] = "Quadro Kanban"; int proj = ViewBag.ProjetoId; }
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 mb-0">Quadro Kanban · Projeto @proj</h1>
+  <div class="btn-group" role="group" aria-label="Projeto">
+    <a class="btn btn-outline-secondary @(proj == 1 ? "active" : "")" href="?projetoId=1">Portal de Pedidos</a>
+    <a class="btn btn-outline-secondary @(proj == 2 ? "active" : "")" href="?projetoId=2">App de Agendamentos</a>
+  </div>
+</div>
+@if (ViewBag.Ok is string ok) { <div class="alert alert-success" role="status">@ok</div> }
+@if (ViewBag.Erro is string erro) { <div class="alert alert-warning" role="alert">@erro</div> }
+<div class="row g-3">
+@for (int col = 0; col < KanbanController.Colunas.Length; col++)
+{
+  var c = col;
+  <section class="col" aria-label="@KanbanController.Colunas[c]">
+    <div class="card h-100">
+      <div class="card-header fw-semibold">@KanbanController.Colunas[c] <span class="badge text-bg-secondary">@Model.Count(t => t.Estado == c)</span></div>
+      <div class="card-body p-2">
+      @foreach (var t in Model.Where(t => t.Estado == c))
+      {
+        <article class="card mb-2"><div class="card-body p-2">
+          <div class="small fw-semibold">@t.Titulo</div>
+          <div class="small text-muted mb-2">@t.Pontos pts @(t.SprintId is null ? "· sem sprint" : $"· sprint {t.SprintId}")</div>
+          <form method="post" asp-controller="Kanban" asp-action="Mover" class="d-flex gap-1">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" value="@t.Id" /><input type="hidden" name="rowVersion" value="@t.RowVersion" /><input type="hidden" name="projetoId" value="@proj" />
+            @if (c > 0) { <button class="btn btn-sm btn-outline-secondary" name="novoEstado" value="@(c - 1)" aria-label="Mover para a esquerda">←</button> }
+            @if (c < 4) { <button class="btn btn-sm btn-outline-primary" name="novoEstado" value="@(c + 1)" aria-label="Mover para a direita">→</button> }
+          </form>
+        </div></article>
+      }
+      </div>
+    </div>
+  </section>
+}
+</div>

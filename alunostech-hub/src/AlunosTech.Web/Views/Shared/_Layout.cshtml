@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ViewData["Title"] · Alunos Tech Hub</title>
+  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Alunos Tech Hub</a>
+      @if (ViewBag.Nome is string nome)
+      {
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" asp-controller="Kanban" asp-action="Index">Kanban</a></li>
+          <li class="nav-item"><a class="nav-link" asp-controller="Chamados" asp-action="Index">Chamados</a></li>
+        </ul>
+        <span class="navbar-text me-3">@nome · @ViewBag.Perfil</span>
+        <a class="btn btn-sm btn-outline-light" asp-controller="Account" asp-action="Logout">Sair</a>
+      }
+    </div>
+  </nav>
+  <main class="container-fluid px-4">@RenderBody()</main>
+</body>
+</html>

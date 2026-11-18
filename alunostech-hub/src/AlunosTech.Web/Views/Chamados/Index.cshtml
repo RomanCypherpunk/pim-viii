@@ -1,0 +1,31 @@
+@model List<AlunosTech.Web.Services.ChamadoVm>
+@{ ViewData["Title"] = "Chamados"; string[] prio = ["", "Crítica", "Alta", "Média", "Baixa"]; string[] st = ["Aberto", "Em atendimento", "Resolvido"]; }
+<h1 class="h3 mb-3">Chamados e SLA</h1>
+@if (ViewBag.Ok is string ok) { <div class="alert alert-success" role="status">@ok</div> }
+@if (ViewBag.Erro is string erro) { <div class="alert alert-warning" role="alert">@erro</div> }
+<div class="row g-4">
+  <div class="col-lg-8">
+    <table class="table table-sm align-middle">
+      <thead><tr><th>#</th><th>Título</th><th>Cliente</th><th>Prioridade</th><th>Prazo SLA (UTC)</th><th>Status</th></tr></thead>
+      <tbody>
+      @foreach (var c in Model)
+      {
+        <tr><td>@c.Id</td><td>@c.Titulo</td><td>@c.ClienteId</td><td>@prio[c.Prioridade]</td><td>@c.PrazoSla.ToString("dd/MM HH:mm")</td><td>@st[c.Status]</td></tr>
+      }
+      @if (!Model.Any()) { <tr><td colspan="6" class="text-muted">Nenhum chamado visível para o seu perfil.</td></tr> }
+      </tbody>
+    </table>
+  </div>
+  <div class="col-lg-4">
+    <form method="post" asp-action="Criar" class="card card-body">
+      @Html.AntiForgeryToken()
+      <h2 class="h5">Abrir chamado</h2>
+      <div class="mb-2"><label class="form-label" for="clienteId">Cliente (ID)</label><input class="form-control" id="clienteId" name="clienteId" type="number" value="1" required /></div>
+      <div class="mb-2"><label class="form-label" for="titulo">Título</label><input class="form-control" id="titulo" name="titulo" required maxlength="200" /></div>
+      <div class="mb-2"><label class="form-label" for="descricao">Descrição</label><textarea class="form-control" id="descricao" name="descricao" rows="3" maxlength="1000"></textarea></div>
+      <div class="mb-3"><label class="form-label" for="prioridade">Prioridade</label>
+        <select class="form-select" id="prioridade" name="prioridade"><option value="1">Crítica (4h)</option><option value="2">Alta (8h)</option><option value="3" selected>Média (24h)</option><option value="4">Baixa (72h)</option></select></div>
+      <button class="btn btn-primary" type="submit">Abrir chamado</button>
+    </form>
+  </div>
+</div>
