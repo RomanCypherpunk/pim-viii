@@ -1,0 +1,21 @@
+# Material acadêmico e de planejamento (não versionado)
+/plano/
+/entrega/
+/docs/
+/alunostech-hub/docs/trabalho-final/
+
+# Build e dependências
+**/bin/
+**/obj/
+.vs/
+**/.dart_tool/
+**/build/
+TestResults/
+coverage/
+*.log
+
+# Configuração local e segredos
+.env
+.env.*
+!.env.example
+*.err
