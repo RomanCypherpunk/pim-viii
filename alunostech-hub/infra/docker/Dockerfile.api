@@ -1,0 +1,22 @@
+# Build multi-stage: SDK compila, runtime enxuto executa (menor superficie de ataque).
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /src
+COPY AlunosTechHub.slnx ./
+COPY src/AlunosTech.Domain/*.csproj src/AlunosTech.Domain/
+COPY src/AlunosTech.Application/*.csproj src/AlunosTech.Application/
+COPY src/AlunosTech.Infrastructure/*.csproj src/AlunosTech.Infrastructure/
+COPY src/AlunosTech.Api/*.csproj src/AlunosTech.Api/
+RUN dotnet restore src/AlunosTech.Api/AlunosTech.Api.csproj
+COPY src/ src/
+COPY database/ database/
+RUN dotnet publish src/AlunosTech.Api/AlunosTech.Api.csproj -c Release -o /app --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
+WORKDIR /app
+# Usuario nao-root (UID 1654 ja existe na imagem como "app")
+USER $APP_UID
+ENV ASPNETCORE_URLS=http://+:8080 \
+    DOTNET_EnableDiagnostics=0
+EXPOSE 8080
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "AlunosTech.Api.dll"]

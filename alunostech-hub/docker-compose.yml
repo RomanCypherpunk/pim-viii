@@ -1,0 +1,37 @@
+# Ambiente local: SQL Server + API. Uso: copie .env.example para .env e rode `docker compose up -d --build`.
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: alunostech-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD:?defina MSSQL_SA_PASSWORD no .env}"
+      MSSQL_PID: "Developer"
+    ports:
+      - "${SQLSERVER_PORT:-1433}:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -C -Q \"SELECT 1\" || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+
+  api:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.api
+    container_name: alunostech-api
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    environment:
+      ConnectionStrings__Default: "Server=sqlserver,1433;Database=AlunosTech;User Id=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True;Encrypt=False"
+      Jwt__Key: "${JWT_KEY:?defina JWT_KEY (32+ caracteres) no .env}"
+      OpenApi__Habilitar: "true"
+    ports:
+      - "${API_PORT:-8080}:8080"
+
+volumes:
+  sqlserver-data:
