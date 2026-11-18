@@ -1,0 +1,35 @@
+﻿=== GitHub Actions: CI (run 44421464768) e CD (run 44421740812) ===
+
+[CI] resultado=success  commit=83ec0e7  https://github.com/RomanCypherpunk/pim-viii/actions/runs/44421464768
+  job build-test: success
+    success  Initialize containers
+    success  Run actions/checkout@v4
+    success  Run actions/setup-dotnet@v4
+    success  Restaurar e compilar
+    success  Testes unitarios com cobertura
+    success  Validar scripts SQL (migracao do zero em SQL Server real)
+    success  Run actions/upload-artifact@v4
+    success  Stop containers
+  job flutter: success
+    success  Run actions/checkout@v4
+    success  Run subosito/flutter-action@v2
+    success  Run flutter pub get
+    success  Run flutter analyze
+    success  Run flutter test
+  job docker-scan: success
+    success  Run actions/checkout@v4
+    success  Build da imagem
+    success  Scan de vulnerabilidades (Trivy)
+    success  Scan de segredos (gitleaks)
+    success  Login no GHCR
+    success  Publicar imagem
+
+[CD] resultado=success  commit=83ec0e7  https://github.com/RomanCypherpunk/pim-viii/actions/runs/44421740812
+  job deploy-kind: success
+    success  Run actions/checkout@v4
+    success  Run helm/kind-action@v1
+    success  Build e carga da imagem no cluster
+    success  Aplicar manifests
+    success  Aguardar rollout
+    success  Estado final
+

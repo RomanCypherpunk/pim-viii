@@ -1,0 +1,9 @@
+﻿NAME                       READY   STATUS    RESTARTS      AGE
+pod/api-78bb85848c-5f9t9   1/1     Running   2 (34s ago)   70s
+pod/api-78bb85848c-7ldbz   1/1     Running   1 (39s ago)   70s
+pod/sqlserver-0            1/1     Running   0             70s
+NAME                TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/api         ClusterIP   10.96.75.59     <none>        80/TCP     70s
+service/sqlserver   ClusterIP   10.96.234.139   <none>        1433/TCP   70s
+NAME                                      REFERENCE        TARGETS              MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/api   Deployment/api   cpu: <unknown>/50%   2         6         2          70s
