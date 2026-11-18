@@ -37,9 +37,10 @@ alunostech-hub/
 ├── mobile/alunostech_mobile/       # aplicativo Flutter
 ├── tests/AlunosTech.Domain.Tests/  # 27 testes
 ├── database/                       # migrations, functions, procedures, triggers, security, seed, performance
-├── infra/                          # docker/, k8s/, scripts/
-├── .github/workflows/              # ci.yml e cd.yml
-└── docs/                           # evidências e trabalho final
+├── infra/                          # docker/, k8s/ (app, metrics-server, prometheus), scripts/
+└── docs/evidencias/                # saídas de comandos e capturas de tela
+
+Na raiz do repositório: .github/workflows/ (ci.yml e cd.yml)
 ```
 
 ## Como executar
@@ -83,7 +84,13 @@ Usuários de desenvolvimento (senha padrão `AlunosTech@2026`, definida em `Seed
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File infra/scripts/deploy.ps1
+kubectl apply -f infra/k8s/metrics-server.yaml     # necessário para o HPA (v0.7.2, com --kubelet-insecure-tls para o kind)
+kubectl apply -f infra/k8s/prometheus.yaml         # coleta o /metrics de cada pod da API
 kubectl -n alunostech get pods,svc,hpa
+
+# teste de carga: o HPA escala a API de 2 até 6 réplicas
+powershell -File infra/scripts/load-test.ps1 -Minutos 5
+# Prometheus: kubectl -n alunostech port-forward svc/prometheus 9090:9090  ->  http://localhost:9090/targets
 ```
 
 ### Testes e roteiros de evidência
@@ -112,8 +119,8 @@ sqlcmd -S localhost -U sa -P <senha> -C -d AlunosTech -i database/performance/05
 
 ## O que foi e o que não foi validado
 
-Validado por execução: 27 testes .NET e 3 Flutter; scripts SQL aplicados em SQL Server 2022; roteiro funcional da API (local e no cluster kind); concorrência com duas sessões; otimização de consulta com 500 mil registros; build da imagem Docker; telas web, desktop e mobile (este em navegador).
+Validado por execução: 27 testes .NET e 3 Flutter; scripts SQL aplicados em SQL Server 2022; roteiro funcional da API (local e no cluster kind); concorrência com duas sessões; otimização de consulta com 500 mil registros; build da imagem Docker; autoescalonamento (HPA de 2 para 6 réplicas sob carga); coleta de métricas no Prometheus (6 pods `up`); telas web, desktop e mobile (este em navegador).
 
-**Não validado / proposto:** execução dos workflows no GitHub Actions (e varreduras Trivy/gitleaks), HPA com métricas (falta `metrics-server`), Prometheus/Grafana, aplicação efetiva da `NetworkPolicy`, execução do app em dispositivo Android e implantação em nuvem pública.
+**Não validado / proposto:** execução dos workflows no GitHub Actions (e varreduras Trivy/gitleaks), Grafana, aplicação efetiva da `NetworkPolicy`, execução do app em dispositivo Android e implantação em nuvem pública.
 
 Em desenvolvimento a API conecta com o usuário `sa`; em produção deve usar o papel `role_alunostech_app` criado em `database/security/040_seguranca.sql`.
