@@ -1,0 +1,13 @@
+bin/
+obj/
+.vs/
+*.user
+.env
+.env.*
+!.env.example
+**/.dart_tool/
+**/build/
+*.log
+TestResults/
+coverage/
+infra/k8s/secret.yaml

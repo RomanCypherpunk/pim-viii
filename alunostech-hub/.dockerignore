@@ -1,0 +1,13 @@
+**/bin/
+**/obj/
+**/.vs/
+.git/
+.github/
+.env
+.env.*
+docs/
+mobile/
+tests/
+**/*.log
+src/AlunosTech.Desktop/
+src/AlunosTech.Web/
