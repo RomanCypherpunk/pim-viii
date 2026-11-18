@@ -1,0 +1,159 @@
+# Manifests Kubernetes do Alunos Tech Hub. Aplicar com: kubectl apply -f infra/k8s/
+# O Secret NAO esta aqui: crie com infra/scripts/deploy.ps1 (kubectl create secret) ou a partir de secret.example.yaml.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: alunostech
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alunostech-config
+  namespace: alunostech
+data:
+  OpenApi__Habilitar: "false"
+  Database__MigrarAoIniciar: "true"
+---
+# Banco: StatefulSet com volume persistente
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sqlserver
+  namespace: alunostech
+spec:
+  serviceName: sqlserver
+  replicas: 1
+  selector:
+    matchLabels: { app: sqlserver }
+  template:
+    metadata:
+      labels: { app: sqlserver }
+    spec:
+      containers:
+        - name: sqlserver
+          image: mcr.microsoft.com/mssql/server:2022-latest
+          ports: [{ containerPort: 1433 }]
+          env:
+            - { name: ACCEPT_EULA, value: "Y" }
+            - { name: MSSQL_PID, value: "Developer" }
+            - name: MSSQL_SA_PASSWORD
+              valueFrom: { secretKeyRef: { name: alunostech-secrets, key: sa-password } }
+          resources:
+            requests: { cpu: 250m, memory: 2Gi }
+            limits: { cpu: "1", memory: 3Gi }
+          readinessProbe:
+            tcpSocket: { port: 1433 }
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          volumeMounts:
+            - { name: data, mountPath: /var/opt/mssql }
+  volumeClaimTemplates:
+    - metadata: { name: data }
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources: { requests: { storage: 2Gi } }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sqlserver
+  namespace: alunostech
+spec:
+  selector: { app: sqlserver }
+  ports: [{ port: 1433, targetPort: 1433 }]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  namespace: alunostech
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: api }
+  template:
+    metadata:
+      labels: { app: api }
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1654
+        runAsGroup: 1654
+      containers:
+        - name: api
+          image: alunostech-api:latest
+          imagePullPolicy: IfNotPresent
+          ports: [{ containerPort: 8080 }]
+          envFrom:
+            - configMapRef: { name: alunostech-config }
+          env:
+            - name: Jwt__Key
+              valueFrom: { secretKeyRef: { name: alunostech-secrets, key: jwt-key } }
+            - name: SA_PASSWORD
+              valueFrom: { secretKeyRef: { name: alunostech-secrets, key: sa-password } }
+            - name: ConnectionStrings__Default
+              value: "Server=sqlserver,1433;Database=AlunosTech;User Id=sa;Password=$(SA_PASSWORD);TrustServerCertificate=True;Encrypt=False"
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits: { cpu: 500m, memory: 384Mi }
+          livenessProbe:
+            httpGet: { path: /health/live, port: 8080 }
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet: { path: /health/ready, port: 8080 }
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          volumeMounts:
+            - { name: tmp, mountPath: /tmp }
+      volumes:
+        - { name: tmp, emptyDir: {} }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api
+  namespace: alunostech
+spec:
+  selector: { app: api }
+  ports: [{ port: 80, targetPort: 8080 }]
+---
+# Escalabilidade horizontal por CPU (2 a 6 replicas)
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: api
+  namespace: alunostech
+spec:
+  scaleTargetRef: { apiVersion: apps/v1, kind: Deployment, name: api }
+  minReplicas: 2
+  maxReplicas: 6
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: { type: Utilization, averageUtilization: 50 }
+---
+# Rede: so a API acessa o banco
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: sqlserver-somente-api
+  namespace: alunostech
+spec:
+  podSelector:
+    matchLabels: { app: sqlserver }
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: { app: api }
+      ports: [{ port: 1433 }]
