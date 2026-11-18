@@ -1,0 +1,86 @@
+=== 1. Objetos programaveis criados ===
+Tipo Nome
+---- ----
+SQL_INLINE_TABLE_VALUED_FUNCTION fn_FiltroCliente
+SQL_INLINE_TABLE_VALUED_FUNCTION fn_TarefasDoSprint
+SQL_SCALAR_FUNCTION fn_PrazoSla
+SQL_STORED_PROCEDURE sp_CriarChamado
+SQL_STORED_PROCEDURE sp_FecharHorasMes
+SQL_STORED_PROCEDURE sp_FecharSprint
+SQL_STORED_PROCEDURE sp_MoverTarefa
+SQL_STORED_PROCEDURE sp_RelatorioHorasPorProjeto
+SQL_TRIGGER trg_Apontamento_BloqueiaSprintFechada
+SQL_TRIGGER trg_Tarefa_Auditoria
+
+ 
+=== 2. Funcao escalar fn_PrazoSla (abertura 2026-11-18 10:00) ===
+Prioridade PrazoSla
+---------- --------
+1 2026-11-18 14:00:00.0000000
+2 2026-11-18 18:00:00.0000000
+3 2026-11-19 10:00:00.0000000
+4 2026-11-21 10:00:00.0000000
+
+ 
+=== 3. Funcao de tabela fn_TarefasDoSprint(2) ===
+Id Titulo Estado Pontos ResponsavelId
+-- ------ ------ ------ -------------
+4 Carrinho de compras 1 5 NULL
+
+ 
+=== 4. Trigger de auditoria: transicoes registradas pela API ===
+TarefaId EstadoAnterior EstadoNovo UsuarioBanco Em
+-------- -------------- ---------- ------------ --
+3 2 3 sa 2026-11-18 22:17:21.5656590
+3 3 4 sa 2026-11-18 22:17:21.6315912
+2 3 0 sa 2026-11-18 22:17:21.9335886
+
+ 
+=== 5. Trigger de regra: apontar horas em tarefa de sprint ENCERRADA (esperado: erro 50040) ===
+Erro 50040: Nao e permitido apontar horas em tarefa de sprint encerrada.
+ 
+=== 6. Trigger de regra: apontar horas em tarefa valida (backlog, sem sprint) -> permitido ===
+Id TarefaId Data Horas
+-- -------- ---- -----
+2 5 2026-11-17 3.50
+
+ 
+=== 7. Periodo mensal fechado (out/2026 fechado pela API) bloqueia novo apontamento (erro 50041) ===
+Erro 50041: Periodo mensal ja fechado.
+ 
+=== 8. Transacao com ROLLBACK: sp_FecharSprint em sprint inexistente nao deixa efeito colateral ===
+Erro 50020: Sprint inexistente. | transacoes abertas: 0
+ 
+=== 9. Concorrencia otimista: sp_MoverTarefa com ROWVERSION obsoleto (esperado: erro 50001) ===
+Erro 50001: Conflito de concorrencia: a tarefa foi alterada por outro usuario.
+ 
+=== 10. Row-Level Security: mesma tabela, tres contextos ===
+Contexto ChamadosVisiveis
+-------- ----------------
+Sem contexto (admin/migracao) 2
+
+Contexto ChamadosVisiveis
+-------- ----------------
+Perfil Cliente, ClienteId=1 1
+
+Contexto ChamadosVisiveis
+-------- ----------------
+Perfil Cliente, ClienteId=2 1
+
+ 
+=== 11. Privilegio minimo + Dynamic Data Masking (usuario da aplicacao, sem UNMASK) ===
+Nome EmailVisivelParaApp
+---- -------------------
+Administrador aXXX@XXXX.com
+Gerente gXXX@XXXX.com
+Dev dXXX@XXXX.com
+
+DELETE em Tarefa negado (erro 229): The DELETE permission was denied on the object 'Tarefa', database 'AlunosTech', schema 'dbo'.
+UPDATE na trilha de auditoria negado (erro 229)
+E-mail sem mascara apenas para quem tem UNMASK (sa):
+Nome Email
+---- -----
+Administrador admin@alunostech.dev
+Gerente gerente@alunostech.dev
+Dev dev@alunostech.dev
+

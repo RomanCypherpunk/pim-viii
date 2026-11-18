@@ -1,0 +1,16 @@
+Configuracao LeiturasLogicasTotais TempoMedioMs
+------------ --------------------- ------------
+v1 + SEM indice 1980 72.1
+
+Configuracao LeiturasLogicasTotais TempoMedioMs
+------------ --------------------- ------------
+v2 + SEM indice 1980 55.7
+
+Configuracao LeiturasLogicasTotais TempoMedioMs
+------------ --------------------- ------------
+v1 + COM indice 90294 171.8
+
+Configuracao LeiturasLogicasTotais TempoMedioMs
+------------ --------------------- ------------
+v2 + COM indice 244 28.7
+

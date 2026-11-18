@@ -1,0 +1,13 @@
+﻿kubectl : Found 2 pods, using pod/api-6b9cffff4b-txpsp
+No linha:9 caractere:1
++ kubectl -n alunostech logs deploy/api --tail=6 2>&1 | Out-File docs\e ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Found 2 pods, u...b9cffff4b-txpsp:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /app
+info: AlunosTech.Application.Notifications.LogNotificador[0]
+      [notificacao:log] projeto-1: Tarefa 3 concluída (+2 pontos).

@@ -1,0 +1,5 @@
+﻿00:00 +0: loading C:/Users/enzox/OneDrive/Documentos/VS Code/pim-viii/alunostech-hub/mobile/alunostech_mobile/test/widget_test.dart
+00:00 +0: login com credenciais invalidas mostra a mensagem da API
+00:01 +1: login valido abre a lista de tarefas
+00:01 +2: ApiClient.mover sinaliza conflito (HTTP 409)
+00:02 +3: All tests passed!

@@ -1,0 +1,23 @@
+﻿=== Alvos do Prometheus (job alunostech-api) ===
+api-6b9cffff4b-gsc9j  saude=up  instancia=10.244.0.16:8080
+api-6b9cffff4b-mzs6v  saude=up  instancia=10.244.0.15:8080
+api-6b9cffff4b-qkb67  saude=up  instancia=10.244.0.7:8080
+api-6b9cffff4b-txpsp  saude=up  instancia=10.244.0.6:8080
+api-6b9cffff4b-6rcjs  saude=up  instancia=10.244.0.17:8080
+api-6b9cffff4b-9tgm9  saude=up  instancia=10.244.0.14:8080
+
+=== up{job="alunostech-api"} ===
+pod=api-6b9cffff4b-gsc9j valor=1
+pod=api-6b9cffff4b-qkb67 valor=1
+pod=api-6b9cffff4b-mzs6v valor=1
+pod=api-6b9cffff4b-9tgm9 valor=1
+pod=api-6b9cffff4b-txpsp valor=1
+pod=api-6b9cffff4b-6rcjs valor=1
+
+=== Requisicoes por segundo (soma, janela de 1 min) ===
+req/s = 990,2
+
+=== Latencia media por rota (s) ===
+/health/live  0,0003 s
+/health/ready  0,0068 s
+api/projetos/{projetoId:int}/tarefas  0,0051 s

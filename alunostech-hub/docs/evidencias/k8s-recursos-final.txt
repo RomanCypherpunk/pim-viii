@@ -1,0 +1,16 @@
+﻿NAME                                      REFERENCE        TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/api   Deployment/api   cpu: 325%/50%   2         6         6          50m
+
+NAME                              READY   STATUS        RESTARTS      AGE
+pod/api-6b9cffff4b-6rcjs          1/1     Running       0             6m45s
+pod/api-6b9cffff4b-9tgm9          1/1     Running       0             7m
+pod/api-6b9cffff4b-gsc9j          1/1     Running       0             6m45s
+pod/api-6b9cffff4b-mzs6v          1/1     Running       0             7m
+pod/api-6b9cffff4b-qkb67          1/1     Running       2 (49m ago)   50m
+pod/api-6b9cffff4b-txpsp          1/1     Running       1 (49m ago)   50m
+pod/load-69946b5c6b-jxcp7         1/1     Terminating   0             91s
+pod/load-69946b5c6b-nf6fw         1/1     Terminating   0             91s
+pod/load-69946b5c6b-qntcv         1/1     Terminating   0             91s
+pod/load-69946b5c6b-zhm6j         1/1     Terminating   0             91s
+pod/prometheus-54554cbc44-rpqr9   1/1     Running       0             2m5s
+pod/sqlserver-0                   1/1     Running       0             50m

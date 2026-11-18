@@ -1,0 +1,11 @@
+﻿NAME                       READY   STATUS    RESTARTS      AGE   IP           NODE                       NOMINATED NODE   READINESS GATES
+pod/api-6b9cffff4b-qkb67   1/1     Running   2 (54s ago)   99s   10.244.0.7   alunostech-control-plane   <none>           <none>
+pod/api-6b9cffff4b-txpsp   1/1     Running   1 (65s ago)   99s   10.244.0.6   alunostech-control-plane   <none>           <none>
+pod/sqlserver-0            1/1     Running   0             99s   10.244.0.8   alunostech-control-plane   <none>           <none>
+
+NAME                TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE    SELECTOR
+service/api         ClusterIP   10.96.204.130   <none>        80/TCP     118s   app=api
+service/sqlserver   ClusterIP   10.96.38.111    <none>        1433/TCP   118s   app=sqlserver
+
+NAME                                      REFERENCE        TARGETS              MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/api   Deployment/api   cpu: <unknown>/50%   2         6         2          118s

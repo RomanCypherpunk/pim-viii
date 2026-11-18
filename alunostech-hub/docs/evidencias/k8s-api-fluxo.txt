@@ -1,0 +1,73 @@
+﻿=== EVIDENCIAS FUNCIONAIS DA API (2026-11-18T19:32:47) ===
+
+[1. Login com senha errada] HTTP 401
+    {"erro":"Credenciais inválidas."}
+
+[2. Login admin@alunostech.dev] HTTP 200
+    {"accessToken":"<jwt>","tipoToken":"Bearer","expiraEmSegundos":28800,"nome":"Administrador","perfil":"Administrador"}
+
+[2. Login gerente@alunostech.dev] HTTP 200
+    {"accessToken":"<jwt>","tipoToken":"Bearer","expiraEmSegundos":28800,"nome":"Gerente","perfil":"Gerente"}
+
+[2. Login dev@alunostech.dev] HTTP 200
+    {"accessToken":"<jwt>","tipoToken":"Bearer","expiraEmSegundos":28800,"nome":"Dev","perfil":"Desenvolvedor"}
+
+[2. Login cliente@alfa.example] HTTP 200
+    {"accessToken":"<jwt>","tipoToken":"Bearer","expiraEmSegundos":28800,"nome":"Cliente Alfa","perfil":"Cliente"}
+
+[3. Sem token -> listar tarefas] HTTP 401
+    
+
+[4. Cliente tenta fechar sprint (perfil sem permissao)] HTTP 403
+    
+
+Tarefa alvo: id=3 'Filtro por categoria' estado=2
+
+[5. Mover EmAndamento -> EmRevisao (valido)] HTTP 200
+    {"rowVersion":"AAAAAAAAB9s="}
+
+[6. Mover EmRevisao -> Backlog (transicao invalida, regra de dominio)] HTTP 422
+    {"erro":"Transição inválida: EmRevisao → Backlog."}
+
+[7. Segundo usuario com RowVersion obsoleto (concorrencia otimista -> 409)] HTTP 409
+    {"erro":"Conflito de concorrência: a tarefa foi alterada por outro usuário."}
+
+[8. Concluir tarefa (dispara evento de dominio + trigger de auditoria)] HTTP 200
+    {"rowVersion":"AAAAAAAAB98="}
+
+[9. Cliente Alfa abre chamado critico (SLA calculado no banco)] HTTP 201
+    {"id":1}
+
+[10. Cliente Alfa tenta abrir chamado em nome de outro cliente] HTTP 403
+    
+
+[11. Gerente abre chamado do cliente 2] HTTP 201
+    {"id":2}
+
+[12. Gerente lista chamados (ve todos os clientes)] HTTP 200
+    [{"id":2,"clienteId":2,"titulo":"Duvida no app","prioridade":3,"abertura":"2026-11-18T22:32:52.1548972","prazoSla":"2026-11-19T22:32:52.1548972","status":0},{"id":1,"clienteId":1,"titulo":"Sistema fora do ar","prioridade":1,"abertura":"2026-11-18T22:32:52.0974845","prazoSla":"2026-11-19T02:32:52.0974845","status":0}]
+
+[13. Cliente Alfa lista chamados (RLS no banco filtra so os dele)] HTTP 200
+    [{"id":1,"clienteId":1,"titulo":"Sistema fora do ar","prioridade":1,"abertura":"2026-11-18T22:32:52.0974845","prazoSla":"2026-11-19T02:32:52.0974845","status":0}]
+
+[14. Gerente fecha a Sprint 1 (transacao: velocity + devolve pendentes ao backlog)] HTTP 200
+    {"velocity":5}
+
+[15. Segundo fechamento da mesma sprint (rejeitado)] HTTP 422
+    {"erro":"Sprint ja encerrada."}
+
+[16. Relatorio de horas (periodo invalido -> 422)] HTTP 422
+    {"erro":"Período inválido."}
+
+[17. Dev tenta relatorio (sem permissao -> 403)] HTTP 403
+    
+
+[18. Admin fecha horas de out/2026] HTTP 200
+    {"totalHoras":0.00}
+
+[19. Admin repete o fechamento (idempotencia -> rejeitado)] HTTP 422
+    {"erro":"Periodo ja fechado."}
+
+[20. Health ready] HTTP 200
+    Healthy
+

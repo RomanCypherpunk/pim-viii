@@ -1,0 +1,308 @@
+﻿# HELP http_request_duration_seconds The duration of HTTP requests processed by an ASP.NET Core application.
+# TYPE http_request_duration_seconds histogram
+http_request_duration_seconds_sum{code="200",method="GET",controller="",action="",endpoint="/health/ready"} 0.07337
+http_request_duration_seconds_count{code="200",method="GET",controller="",action="",endpoint="/health/ready"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/health/ready",le="0.001"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/health/ready",le="0.002"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/health/ready",le="0.004"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/health/ready",le="0.008"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/health/ready",le="0.016"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/health/ready",le="0.032"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/health/ready",le="0.064"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/health/ready",le="0.128"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/health/ready",le="0.256"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/health/ready",le="0.512"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/health/ready",le="1.024"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/health/ready",le="2.048"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/health/ready",le="4.096"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/health/ready",le="8.192"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/health/ready",le="16.384"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/health/ready",le="32.768"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/health/ready",le="+Inf"} 1
+http_request_duration_seconds_sum{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login"} 0.5804338
+http_request_duration_seconds_count{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login"} 1
+http_request_duration_seconds_bucket{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login",le="0.001"} 0
+http_request_duration_seconds_bucket{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login",le="0.002"} 0
+http_request_duration_seconds_bucket{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login",le="0.004"} 0
+http_request_duration_seconds_bucket{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login",le="0.008"} 0
+http_request_duration_seconds_bucket{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login",le="0.016"} 0
+http_request_duration_seconds_bucket{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login",le="0.032"} 0
+http_request_duration_seconds_bucket{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login",le="0.064"} 0
+http_request_duration_seconds_bucket{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login",le="0.128"} 0
+http_request_duration_seconds_bucket{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login",le="0.256"} 0
+http_request_duration_seconds_bucket{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login",le="0.512"} 0
+http_request_duration_seconds_bucket{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login",le="1.024"} 1
+http_request_duration_seconds_bucket{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login",le="2.048"} 1
+http_request_duration_seconds_bucket{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login",le="4.096"} 1
+http_request_duration_seconds_bucket{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login",le="8.192"} 1
+http_request_duration_seconds_bucket{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login",le="16.384"} 1
+http_request_duration_seconds_bucket{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login",le="32.768"} 1
+http_request_duration_seconds_bucket{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login",le="+Inf"} 1
+http_request_duration_seconds_sum{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas"} 0.1907231
+http_request_duration_seconds_count{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas",le="0.001"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas",le="0.002"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas",le="0.004"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas",le="0.008"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas",le="0.016"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas",le="0.032"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas",le="0.064"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas",le="0.128"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas",le="0.256"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas",le="0.512"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas",le="1.024"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas",le="2.048"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas",le="4.096"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas",le="8.192"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas",le="16.384"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas",le="32.768"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas",le="+Inf"} 1
+http_request_duration_seconds_sum{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados"} 0.0909463
+http_request_duration_seconds_count{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados",le="0.001"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados",le="0.002"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados",le="0.004"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados",le="0.008"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados",le="0.016"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados",le="0.032"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados",le="0.064"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados",le="0.128"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados",le="0.256"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados",le="0.512"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados",le="1.024"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados",le="2.048"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados",le="4.096"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados",le="8.192"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados",le="16.384"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados",le="32.768"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados",le="+Inf"} 1
+# HELP http_requests_received_total Provides the count of HTTP requests that have been processed by the ASP.NET Core pipeline.
+# TYPE http_requests_received_total counter
+http_requests_received_total{code="200",method="GET",controller="",action="",endpoint="/health/ready"} 1
+http_requests_received_total{code="200",method="POST",controller="Auth",action="Login",endpoint="api/auth/login"} 1
+http_requests_received_total{code="200",method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas"} 1
+http_requests_received_total{code="200",method="GET",controller="Chamados",action="Listar",endpoint="api/chamados"} 1
+# HELP http_requests_in_progress The number of requests currently in progress in the ASP.NET Core pipeline. One series without controller/action label values counts all in-progress requests, with separate series existing for each controller-action pair.
+# TYPE http_requests_in_progress gauge
+http_requests_in_progress{method="GET",controller="",action="",endpoint="/health/ready"} 0
+http_requests_in_progress{method="POST",controller="Auth",action="Login",endpoint="api/auth/login"} 0
+http_requests_in_progress{method="GET",controller="Tarefas",action="Listar",endpoint="api/projetos/{projetoId:int}/tarefas"} 0
+http_requests_in_progress{method="GET",controller="Chamados",action="Listar",endpoint="api/chamados"} 0
+# HELP dotnet_collection_count_total GC collection count
+# TYPE dotnet_collection_count_total counter
+dotnet_collection_count_total{generation="0"} 13
+dotnet_collection_count_total{generation="1"} 12
+dotnet_collection_count_total{generation="2"} 2
+# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
+# TYPE process_start_time_seconds gauge
+process_start_time_seconds 1795041888.1722956
+# HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.
+# TYPE process_cpu_seconds_total counter
+process_cpu_seconds_total 4.203125
+# HELP process_virtual_memory_bytes Virtual memory size in bytes.
+# TYPE process_virtual_memory_bytes gauge
+process_virtual_memory_bytes 2481088229376
+# HELP process_working_set_bytes Process working set
+# TYPE process_working_set_bytes gauge
+process_working_set_bytes 98766848
+# HELP process_private_memory_bytes Process private memory size
+# TYPE process_private_memory_bytes gauge
+process_private_memory_bytes 32940032
+# HELP process_open_handles Number of open handles
+# TYPE process_open_handles gauge
+process_open_handles 739
+# HELP process_num_threads Total number of threads
+# TYPE process_num_threads gauge
+process_num_threads 43
+# HELP dotnet_total_memory_bytes Total known allocated memory
+# TYPE dotnet_total_memory_bytes gauge
+dotnet_total_memory_bytes 4425904
+# HELP prometheus_net_metric_families Number of metric families currently registered.
+# TYPE prometheus_net_metric_families gauge
+prometheus_net_metric_families{metric_type="counter"} 4
+prometheus_net_metric_families{metric_type="gauge"} 63
+prometheus_net_metric_families{metric_type="summary"} 0
+prometheus_net_metric_families{metric_type="histogram"} 1
+# HELP prometheus_net_metric_instances Number of metric instances currently registered across all metric families.
+# TYPE prometheus_net_metric_instances gauge
+prometheus_net_metric_instances{metric_type="counter"} 8
+prometheus_net_metric_instances{metric_type="gauge"} 86
+prometheus_net_metric_instances{metric_type="summary"} 0
+prometheus_net_metric_instances{metric_type="histogram"} 4
+# HELP prometheus_net_metric_timeseries Number of metric timeseries currently generated from all metric instances.
+# TYPE prometheus_net_metric_timeseries gauge
+prometheus_net_metric_timeseries{metric_type="counter"} 8
+prometheus_net_metric_timeseries{metric_type="gauge"} 86
+prometheus_net_metric_timeseries{metric_type="summary"} 0
+prometheus_net_metric_timeseries{metric_type="histogram"} 76
+# HELP prometheus_net_exemplars_recorded_total Number of exemplars that were accepted into in-memory storage in the prometheus-net SDK.
+# TYPE prometheus_net_exemplars_recorded_total counter
+prometheus_net_exemplars_recorded_total 0
+# HELP prometheus_net_eventcounteradapter_sources_connected_total Number of event sources that are currently connected to the adapter.
+# TYPE prometheus_net_eventcounteradapter_sources_connected_total gauge
+prometheus_net_eventcounteradapter_sources_connected_total 4
+# HELP prometheus_net_meteradapter_instruments_connected Number of instruments that are currently connected to the adapter.
+# TYPE prometheus_net_meteradapter_instruments_connected gauge
+prometheus_net_meteradapter_instruments_connected 78
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_connection_created ({connection}) New connections allocated (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_connection_created gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_connection_created 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_connection_handshake_failures ({connection}) Connections that failed during handshake (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_connection_handshake_failures gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_connection_handshake_failures 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_connection_app_rejected ({connection}) Connections rejected by the application (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_connection_app_rejected gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_connection_app_rejected 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_connection_load_rejected ({connection}) Connections rejected due to worker load. (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_connection_load_rejected gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_connection_load_rejected 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_connection_resumed ({connection}) Connections resumed (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_connection_resumed gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_connection_resumed 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_connection_allocated ({connection}) Connections currently allocated (ObservableGauge`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_connection_allocated gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_connection_allocated 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_connection_connected ({connection}) Connections currently in the connected state (ObservableGauge`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_connection_connected gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_connection_connected 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_connection_protocol_errors ({connection}) Connections shutdown with a protocol error (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_connection_protocol_errors gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_connection_protocol_errors 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_connection_no_alpn ({connection}) Connection attempts with no matching ALPN (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_connection_no_alpn gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_connection_no_alpn 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_stream_allocated ({stream}) Current streams allocated (ObservableGauge`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_stream_allocated gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_stream_allocated 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_packet_suspected_lost ({packet}) Packets suspected lost (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_packet_suspected_lost gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_packet_suspected_lost 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_packet_dropped ({packet}) Packets dropped for any reason (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_packet_dropped gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_packet_dropped 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_packet_decryption_failures ({packet}) Packets with decryption failures (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_packet_decryption_failures gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_packet_decryption_failures 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_udp_recv_datagrams ({datagram}) UDP datagrams received (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_udp_recv_datagrams gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_udp_recv_datagrams 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_udp_send_datagrams ({datagram}) UDP datagrams sent (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_udp_send_datagrams gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_udp_send_datagrams 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_udp_recv_bytes (By) UDP payload bytes received (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_udp_recv_bytes gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_udp_recv_bytes 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_udp_send_bytes (By) UDP payload bytes sent (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_udp_send_bytes gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_udp_send_bytes 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_udp_recv_events ({event}) UDP receive events (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_udp_recv_events gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_udp_recv_events 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_udp_send_calls ({call}) UDP send API calls (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_udp_send_calls gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_udp_send_calls 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_app_send_bytes (By) Bytes sent by applications (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_app_send_bytes gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_app_send_bytes 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_app_recv_bytes (By) Bytes received by applications (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_app_recv_bytes gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_app_recv_bytes 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_conn_queue_depth ({connection}) Current connections queued for processing (ObservableGauge`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_conn_queue_depth gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_conn_queue_depth 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_conn_oper_queue_depth ({operation}) Current connection operations queued (ObservableGauge`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_conn_oper_queue_depth gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_conn_oper_queue_depth 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_conn_oper_queued ({operation}) New connection operations queued (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_conn_oper_queued gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_conn_oper_queued 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_conn_oper_completed ({operation}) Connection operations processed (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_conn_oper_completed gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_conn_oper_completed 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_work_oper_queue_depth ({operation}) Current worker operations queued (ObservableGauge`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_work_oper_queue_depth gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_work_oper_queue_depth 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_work_oper_queued ({operation}) New worker operations queued (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_work_oper_queued gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_work_oper_queued 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_work_oper_completed ({operation}) Worker operations processed (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_work_oper_completed gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_threadpool_work_oper_completed 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_datapath_path_validated ({challenge}) Successful path challenges (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_datapath_path_validated gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_datapath_path_validated 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_datapath_path_failure ({challenge}) Unsuccessful path challenges (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_datapath_path_failure gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_datapath_path_failure 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_datapath_send_stateless_reset ({packet}) Stateless reset packets sent ever (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_datapath_send_stateless_reset gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_datapath_send_stateless_reset 0
+# HELP private_internaldiagnostics_system_net_quic_msquic_msquic_datapath_send_stateless_retry ({packet}) Stateless retry packets sent (ObservableCounter`1)
+# TYPE private_internaldiagnostics_system_net_quic_msquic_msquic_datapath_send_stateless_retry gauge
+private_internaldiagnostics_system_net_quic_msquic_msquic_datapath_send_stateless_retry 0
+# HELP system_runtime_dotnet_gc_collections ({collection}) The number of garbage collections that have occurred since the process has started. (ObservableCounter`1)
+# TYPE system_runtime_dotnet_gc_collections gauge
+system_runtime_dotnet_gc_collections{gc_heap_generation="gen2"} 2
+system_runtime_dotnet_gc_collections{gc_heap_generation="gen1"} 10
+system_runtime_dotnet_gc_collections{gc_heap_generation="gen0"} 1
+# HELP system_runtime_dotnet_process_memory_working_set (By) The number of bytes of physical memory mapped to the process context. (ObservableUpDownCounter`1)
+# TYPE system_runtime_dotnet_process_memory_working_set gauge
+system_runtime_dotnet_process_memory_working_set 97574912
+# HELP system_runtime_dotnet_gc_heap_total_allocated (By) The approximate number of bytes allocated on the managed GC heap since the process has started. The returned value does not include any native allocations. (ObservableCounter`1)
+# TYPE system_runtime_dotnet_gc_heap_total_allocated gauge
+system_runtime_dotnet_gc_heap_total_allocated 7509512
+# HELP system_runtime_dotnet_gc_last_collection_memory_committed_size (By) The amount of committed virtual memory in use by the .NET GC, as observed during the latest garbage collection. (ObservableUpDownCounter`1)
+# TYPE system_runtime_dotnet_gc_last_collection_memory_committed_size gauge
+system_runtime_dotnet_gc_last_collection_memory_committed_size 4345856
+# HELP system_runtime_dotnet_gc_last_collection_heap_size (By) The managed GC heap size (including fragmentation), as observed during the latest garbage collection. (ObservableUpDownCounter`1)
+# TYPE system_runtime_dotnet_gc_last_collection_heap_size gauge
+system_runtime_dotnet_gc_last_collection_heap_size{gc_heap_generation="gen0"} 288
+system_runtime_dotnet_gc_last_collection_heap_size{gc_heap_generation="gen1"} 1016
+system_runtime_dotnet_gc_last_collection_heap_size{gc_heap_generation="gen2"} 2308312
+system_runtime_dotnet_gc_last_collection_heap_size{gc_heap_generation="loh"} 98384
+system_runtime_dotnet_gc_last_collection_heap_size{gc_heap_generation="poh"} 24720
+# HELP system_runtime_dotnet_gc_last_collection_heap_fragmentation_size (By) The heap fragmentation, as observed during the latest garbage collection. (ObservableUpDownCounter`1)
+# TYPE system_runtime_dotnet_gc_last_collection_heap_fragmentation_size gauge
+system_runtime_dotnet_gc_last_collection_heap_fragmentation_size{gc_heap_generation="gen0"} 24
+system_runtime_dotnet_gc_last_collection_heap_fragmentation_size{gc_heap_generation="gen1"} 24
+system_runtime_dotnet_gc_last_collection_heap_fragmentation_size{gc_heap_generation="gen2"} 183536
+system_runtime_dotnet_gc_last_collection_heap_fragmentation_size{gc_heap_generation="loh"} 32
+system_runtime_dotnet_gc_last_collection_heap_fragmentation_size{gc_heap_generation="poh"} 0
+# HELP system_runtime_dotnet_gc_pause_time (s) The total amount of time paused in GC since the process has started. (ObservableCounter`1)
+# TYPE system_runtime_dotnet_gc_pause_time gauge
+system_runtime_dotnet_gc_pause_time 0.027145
+# HELP system_runtime_dotnet_jit_compiled_il_size (By) Count of bytes of intermediate language that have been compiled since the process has started. (ObservableCounter`1)
+# TYPE system_runtime_dotnet_jit_compiled_il_size gauge
+system_runtime_dotnet_jit_compiled_il_size 661494
+# HELP system_runtime_dotnet_jit_compiled_methods ({method}) The number of times the JIT compiler (re)compiled methods since the process has started. (ObservableCounter`1)
+# TYPE system_runtime_dotnet_jit_compiled_methods gauge
+system_runtime_dotnet_jit_compiled_methods 7746
+# HELP system_runtime_dotnet_jit_compilation_time (s) The number of times the JIT compiler (re)compiled methods since the process has started. (ObservableCounter`1)
+# TYPE system_runtime_dotnet_jit_compilation_time gauge
+system_runtime_dotnet_jit_compilation_time 2.5691197
+# HELP system_runtime_dotnet_monitor_lock_contentions ({contention}) The number of times there was contention when trying to acquire a monitor lock since the process has started. (ObservableCounter`1)
+# TYPE system_runtime_dotnet_monitor_lock_contentions gauge
+system_runtime_dotnet_monitor_lock_contentions 2
+# HELP system_runtime_dotnet_thread_pool_thread_count ({thread}) The number of thread pool threads that currently exist. (ObservableCounter`1)
+# TYPE system_runtime_dotnet_thread_pool_thread_count gauge
+system_runtime_dotnet_thread_pool_thread_count 12
+# HELP system_runtime_dotnet_thread_pool_work_item_count ({work_item}) The number of work items that the thread pool has completed since the process has started. (ObservableCounter`1)
+# TYPE system_runtime_dotnet_thread_pool_work_item_count gauge
+system_runtime_dotnet_thread_pool_work_item_count 5714
+# HELP system_runtime_dotnet_thread_pool_queue_length ({work_item}) The number of work items that are currently queued to be processed by the thread pool. (ObservableCounter`1)
+# TYPE system_runtime_dotnet_thread_pool_queue_length gauge
+system_runtime_dotnet_thread_pool_queue_length 0
+# HELP system_runtime_dotnet_timer_count ({timer}) The number of timer instances that are currently active. An active timer is registered to tick at some point in the future and has not yet been canceled. (ObservableUpDownCounter`1)
+# TYPE system_runtime_dotnet_timer_count gauge
+system_runtime_dotnet_timer_count 50
+# HELP system_runtime_dotnet_assembly_count ({assembly}) The number of .NET assemblies that are currently loaded. (ObservableUpDownCounter`1)
+# TYPE system_runtime_dotnet_assembly_count gauge
+system_runtime_dotnet_assembly_count 165
+# HELP system_runtime_dotnet_process_cpu_count ({cpu}) The number of processors available to the process. (ObservableUpDownCounter`1)
+# TYPE system_runtime_dotnet_process_cpu_count gauge
+system_runtime_dotnet_process_cpu_count 8
+# HELP system_runtime_dotnet_process_cpu_time (s) CPU time used by the process. (ObservableCounter`1)
+# TYPE system_runtime_dotnet_process_cpu_time gauge
+system_runtime_dotnet_process_cpu_time{cpu_mode="user"} 3.078125
+system_runtime_dotnet_process_cpu_time{cpu_mode="system"} 1.125
+

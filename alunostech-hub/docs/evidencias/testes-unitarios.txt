@@ -1,0 +1,47 @@
+﻿  Determinando os projetos a serem restaurados...
+  Todos os projetos estão atualizados para restauração.
+  AlunosTech.Domain -> C:\Users\enzox\OneDrive\Documentos\VS Code\pim-viii\alunostech-hub\src\AlunosTech.Domain\bin\Debug\net10.0\AlunosTech.Domain.dll
+  AlunosTech.Application -> C:\Users\enzox\OneDrive\Documentos\VS Code\pim-viii\alunostech-hub\src\AlunosTech.Application\bin\Debug\net10.0\AlunosTech.Application.dll
+  AlunosTech.Domain.Tests -> C:\Users\enzox\OneDrive\Documentos\VS Code\pim-viii\alunostech-hub\tests\AlunosTech.Domain.Tests\bin\Debug\net10.0\AlunosTech.Domain.Tests.dll
+Execução de teste para C:\Users\enzox\OneDrive\Documentos\VS Code\pim-viii\alunostech-hub\tests\AlunosTech.Domain.Tests\bin\Debug\net10.0\AlunosTech.Domain.Tests.dll (.NETCoreApp,Version=v10.0)
+1 arquivos de teste no total corresponderam ao padrão especificado.
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.12)
+[xUnit.net 00:00:00.94]   Discovering: AlunosTech.Domain.Tests
+[xUnit.net 00:00:01.04]   Discovered:  AlunosTech.Domain.Tests
+[xUnit.net 00:00:01.09]   Starting:    AlunosTech.Domain.Tests
+  Aprovado AlunosTech.Domain.Tests.SlaTests.SlaFactory_RetornaEstrategiaCorreta(p: Critica, horas: 4) [22 ms]
+  Aprovado AlunosTech.Domain.Tests.NotificadorFactoryTests.Criar_CanalConhecido_RetornaNotificador [22 ms]
+  Aprovado AlunosTech.Domain.Tests.UsuarioTests.Email_EhNormalizado [22 ms]
+  Aprovado AlunosTech.Domain.Tests.SlaTests.SlaFactory_RetornaEstrategiaCorreta(p: Media, horas: 24) [< 1 ms]
+  Aprovado AlunosTech.Domain.Tests.SlaTests.SlaFactory_RetornaEstrategiaCorreta(p: Baixa, horas: 72) [< 1 ms]
+  Aprovado AlunosTech.Domain.Tests.SlaTests.SlaFactory_RetornaEstrategiaCorreta(p: Alta, horas: 8) [< 1 ms]
+  Aprovado AlunosTech.Domain.Tests.NotificadorFactoryTests.Criar_CanalDesconhecido_Lanca [4 ms]
+  Aprovado AlunosTech.Domain.Tests.UsuarioTests.Cliente_SemClienteId_Lanca [4 ms]
+  Aprovado AlunosTech.Domain.Tests.RelatorioServiceTests.PeriodoInvalido_Lanca [31 ms]
+  Aprovado AlunosTech.Domain.Tests.TarefaServiceTests.Mover_TarefaInexistente_Lanca [31 ms]
+  Aprovado AlunosTech.Domain.Tests.TarefaTests.Mover_TransicaoInvalida_LancaDomainException(de: Backlog, para: Concluida) [32 ms]
+  Aprovado AlunosTech.Domain.Tests.TarefaTests.Mover_TransicaoInvalida_LancaDomainException(de: Planejada, para: EmRevisao) [< 1 ms]
+  Aprovado AlunosTech.Domain.Tests.UsuarioTests.Polimorfismo_ObterDescricao [2 ms]
+  Aprovado AlunosTech.Domain.Tests.TarefaServiceTests.Mover_ConflitoDeConcorrencia_Propaga [2 ms]
+  Aprovado AlunosTech.Domain.Tests.TarefaTests.Mover_TransicaoInvalida_LancaDomainException(de: EmAndamento, para: EmAndamento) [< 1 ms]
+  Aprovado AlunosTech.Domain.Tests.RelatorioServiceTests.TamanhoDePagina_EhLimitado [2 ms]
+  Aprovado AlunosTech.Domain.Tests.TarefaServiceTests.Mover_TransicaoInvalida_NaoChegaAoBanco [2 ms]
+  Aprovado AlunosTech.Domain.Tests.TarefaServiceTests.Mover_RowVersionObsoleto_LancaConflito_SemChegarAoBanco [2 ms]
+  Aprovado AlunosTech.Domain.Tests.TarefaTests.Mover_ParaConcluida_GeraEventoDeDominio [5 ms]
+[xUnit.net 00:00:01.27]   Finished:    AlunosTech.Domain.Tests
+  Aprovado AlunosTech.Domain.Tests.TarefaTests.Construtor_TituloVazio_Lanca(titulo: "   ") [< 1 ms]
+  Aprovado AlunosTech.Domain.Tests.TarefaTests.Construtor_TituloVazio_Lanca(titulo: "") [< 1 ms]
+  Aprovado AlunosTech.Domain.Tests.TarefaServiceTests.Mover_Concluir_DisparaHandlerDoEvento [1 ms]
+  Aprovado AlunosTech.Domain.Tests.TarefaTests.Construtor_PontosForaDaFaixa_Lanca(pontos: 0) [< 1 ms]
+  Aprovado AlunosTech.Domain.Tests.TarefaTests.Construtor_PontosForaDaFaixa_Lanca(pontos: 22) [< 1 ms]
+  Aprovado AlunosTech.Domain.Tests.TarefaTests.Mover_TransicaoValida_AtualizaEstado(de: Backlog, para: Planejada) [< 1 ms]
+  Aprovado AlunosTech.Domain.Tests.TarefaTests.Mover_TransicaoValida_AtualizaEstado(de: Planejada, para: EmAndamento) [< 1 ms]
+  Aprovado AlunosTech.Domain.Tests.TarefaTests.Mover_TransicaoValida_AtualizaEstado(de: EmRevisao, para: EmAndamento) [< 1 ms]
+
+Execução de Teste Bem-sucedida.
+Total de testes: 27
+     Aprovados: 27
+Tempo total: 4,1043 Segundos
+
+Anexos:
+  C:\Users\enzox\OneDrive\Documentos\VS Code\pim-viii\alunostech-hub\tests\AlunosTech.Domain.Tests\TestResults\a992198a-bdf6-4d70-9728-5e62aef5afbc\coverage.cobertura.xml

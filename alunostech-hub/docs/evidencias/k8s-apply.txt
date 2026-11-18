@@ -1,0 +1,8 @@
+﻿namespace/alunostech created
+configmap/alunostech-config created
+statefulset.apps/sqlserver created
+service/sqlserver created
+deployment.apps/api created
+service/api created
+horizontalpodautoscaler.autoscaling/api created
+networkpolicy.networking.k8s.io/sqlserver-somente-api created

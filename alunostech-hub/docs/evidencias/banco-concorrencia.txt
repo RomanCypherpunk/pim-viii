@@ -1,0 +1,25 @@
+﻿=== CENARIO 1: LOST UPDATE (sem controle de concorrencia) ===
+--- sessao A:
+A leu Pontos=5
+A gravou Pontos = leitura + 1
+--- sessao B:
+B leu Pontos=5
+B gravou Pontos = leitura + 1
+Valor final de Pontos (esperado 7, duas somas de +1 sobre 5): 6 
+=> Uma atualizacao foi PERDIDA (lost update).
+
+=== CENARIO 2: CONCORRENCIA OTIMISTA com ROWVERSION ===
+--- sessao A:
+A leu Pontos=5
+A: CONFLITO detectado (0 linhas) -> a aplicacao devolve HTTP 409 e o usuario recarrega
+--- sessao B:
+B leu Pontos=5
+B: atualizacao aceita
+Valor final de Pontos: 6  (consistente: so uma atualizacao venceu, a outra foi avisada)
+
+=== CENARIO 3: DEADLOCK e tratamento com retry ===
+--- sessao A:
+A: concluiu na tentativa 1
+--- sessao B:
+B: escolhida como VITIMA do deadlock (erro 1205) na tentativa 1 -> retry
+B: concluiu na tentativa 2

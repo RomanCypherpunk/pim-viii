@@ -1,0 +1,2 @@
+SEM indice  : media 62.007000 ms | min 58.166000 ms | max 74.781000 ms (30 execucoes)
+COM indice  : media 156.841000 ms | min 137.082000 ms | max 223.366000 ms (30 execucoes)

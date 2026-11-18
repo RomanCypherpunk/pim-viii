@@ -1,0 +1,106 @@
+##### SEM INDICES
+ProjetoId Projeto Cliente TotalHoras Tarefas
+--------- ------- ------- ---------- -------
+1 Portal de Pedidos Mercado Alfa 95556.50 10412
+
+Table 'Cliente'. Scan count 0, logical reads 2, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Projeto'. Scan count 0, logical reads 2, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Workfile'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Tarefa'. Scan count 1, logical reads 100, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'ApontamentoHoras'. Scan count 1, logical reads 1867, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+StmtText
+--------
+EXEC dbo.sp_RelatorioHorasPorProjeto '2026-03-01', '2026-03-31';
+  -- Relatorio de horas por projeto no periodo, set-based (sem cursor) e paginado.
+CREATE   PROCEDURE dbo.sp_RelatorioHorasPorProjeto
+    @De DATE,
+    @Ate DATE,
+    @Pagina INT = 1,
+    @TamanhoPagina INT = 50
+AS
+BEGIN
+    SET NOCOUNT ON;
+  SELECT p.Id AS ProjetoId, p.Nome AS Projeto, c.Nome AS Cliente, SUM(a.Horas) AS TotalHoras, COUNT(DISTINCT t.Id) AS Tarefas
+    FROM dbo.ApontamentoHoras a
+    JOIN dbo.Tarefa  t ON t.Id = a.TarefaId
+    JOIN dbo.Projeto p ON p.Id = t.ProjetoId
+    JOIN dbo.Cliente c ON c.Id = p.ClienteId
+    WHERE a.Data >= @De AND a.Data <= @Ate
+    GROUP BY p.Id, p.Nome, c.Nome
+    ORDER BY TotalHoras DESC, p.Id
+    OFFSET (@Pagina - 1) * @TamanhoPagina ROWS FETCH NEXT @TamanhoPagina ROWS ONLY;
+END;
+
+StmtText
+--------
+       |--Top(OFFSET EXPRESSION:(CONVERT_IMPLICIT(bigint,([@Pagina]-(1))*[@TamanhoPagina],0)),TOP EXPRESSION:(CONVERT_IMPLICIT(bigint,[@TamanhoPagina],0)))
+            |--Nested Loops(Inner Join, OUTER REFERENCES:([p].[ClienteId]))
+                 |--Sort(ORDER BY:([Expr1004] DESC, [p].[Id] ASC))
+                 |    |--Nested Loops(Inner Join, OUTER REFERENCES:([t].[ProjetoId]))
+                 |         |--Compute Scalar(DEFINE:([Expr1005]=CONVERT_IMPLICIT(int,[Expr1025],0)))
+                 |         |    |--Hash Match(Aggregate, HASH:([t].[ProjetoId]) DEFINE:([Expr1025]=COUNT(*), [Expr1004]=SUM([partialagg1012])))
+                 |         |         |--Hash Match(Aggregate, HASH:([t].[Id]) DEFINE:([partialagg1012]=SUM([AlunosTech].[dbo].[ApontamentoHoras].[Horas] as [a].[Horas]), [t].[ProjetoId]=ANY([AlunosTech].[dbo].[Tarefa].[ProjetoId] as [t].[ProjetoId])))
+                 |         |              |--Hash Match(Inner Join, HASH:([a].[TarefaId])=([t].[Id]))
+                 |         |                   |--Clustered Index Scan(OBJECT:([AlunosTech].[dbo].[ApontamentoHoras].[PK_Apontamento] AS [a]), WHERE:([AlunosTech].[dbo].[ApontamentoHoras].[Data] as [a].[Data]>=[@De] AND [AlunosTech].[dbo].[ApontamentoHoras].[Data] as [a].[Data]<=[@Ate]))
+                 |         |                   |--Index Scan(OBJECT:([AlunosTech].[dbo].[Tarefa].[IX_Tarefa_Projeto] AS [t]))
+                 |         |--Clustered Index Seek(OBJECT:([AlunosTech].[dbo].[Projeto].[PK_Projeto] AS [p]), SEEK:([p].[Id]=[AlunosTech].[dbo].[Tarefa].[ProjetoId] as [t].[ProjetoId]) ORDERED FORWARD)
+                 |--Clustered Index Seek(OBJECT:([AlunosTech].[dbo].[Cliente].[PK_Cliente] AS [c]), SEEK:([c].[Id]=[AlunosTech].[dbo].[Projeto].[ClienteId] as [p].[ClienteId]) ORDERED FORWARD)
+
+##### COM INDICES
+ProjetoId Projeto Cliente TotalHoras Tarefas
+--------- ------- ------- ---------- -------
+1 Portal de Pedidos Mercado Alfa 95556.50 10412
+
+Table 'Worktable'. Scan count 2, logical reads 88902, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Workfile'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Tarefa'. Scan count 2, logical reads 104, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Cliente'. Scan count 0, logical reads 4, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'Projeto'. Scan count 1, logical reads 2, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Table 'ApontamentoHoras'. Scan count 1, logical reads 125, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+StmtText
+--------
+EXEC dbo.sp_RelatorioHorasPorProjeto '2026-03-01', '2026-03-31';
+  -- Relatorio de horas por projeto no periodo, set-based (sem cursor) e paginado.
+CREATE   PROCEDURE dbo.sp_RelatorioHorasPorProjeto
+    @De DATE,
+    @Ate DATE,
+    @Pagina INT = 1,
+    @TamanhoPagina INT = 50
+AS
+BEGIN
+    SET NOCOUNT ON;
+  SELECT p.Id AS ProjetoId, p.Nome AS Projeto, c.Nome AS Cliente, SUM(a.Horas) AS TotalHoras, COUNT(DISTINCT t.Id) AS Tarefas
+    FROM dbo.ApontamentoHoras a
+    JOIN dbo.Tarefa  t ON t.Id = a.TarefaId
+    JOIN dbo.Projeto p ON p.Id = t.ProjetoId
+    JOIN dbo.Cliente c ON c.Id = p.ClienteId
+    WHERE a.Data >= @De AND a.Data <= @Ate
+    GROUP BY p.Id, p.Nome, c.Nome
+    ORDER BY TotalHoras DESC, p.Id
+    OFFSET (@Pagina - 1) * @TamanhoPagina ROWS FETCH NEXT @TamanhoPagina ROWS ONLY;
+END;
+
+StmtText
+--------
+       |--Top(OFFSET EXPRESSION:(CONVERT_IMPLICIT(bigint,([@Pagina]-(1))*[@TamanhoPagina],0)),TOP EXPRESSION:(CONVERT_IMPLICIT(bigint,[@TamanhoPagina],0)))
+            |--Compute Scalar(DEFINE:([p].[Id]=[Expr1010], [c].[Nome]=[Expr1011]))
+                 |--Nested Loops(Inner Join, WHERE:([Expr1008] = [Expr1010] AND [Expr1009] = [Expr1011]))
+                      |--Sort(ORDER BY:([Expr1004] DESC, [Expr1008] ASC))
+                      |    |--Hash Match(Aggregate, HASH:([Expr1008], [Expr1009]), RESIDUAL:([Expr1008] = [Expr1008] AND [Expr1009] = [Expr1009]) DEFINE:([Expr1004]=SUM([AlunosTech].[dbo].[ApontamentoHoras].[Horas] as [a].[Horas]), [p].[Nome]=ANY([AlunosTech].[dbo].[Projeto].[Nome] as [p].[Nome])))
+                      |         |--Compute Scalar(DEFINE:([Expr1008]=[AlunosTech].[dbo].[Tarefa].[ProjetoId] as [t].[ProjetoId], [Expr1009]=[AlunosTech].[dbo].[Cliente].[Nome] as [c].[Nome]))
+                      |              |--Table Spool
+                      |                   |--Hash Match(Inner Join, HASH:([a].[TarefaId])=([t].[Id]))
+                      |                        |--Index Seek(OBJECT:([AlunosTech].[dbo].[ApontamentoHoras].[IX_Apont_Data] AS [a]), SEEK:([a].[Data] >= [@De] AND [a].[Data] <= [@Ate]) ORDERED FORWARD)
+                      |                        |--Nested Loops(Inner Join, OUTER REFERENCES:([p].[Id]))
+                      |                             |--Nested Loops(Inner Join, OUTER REFERENCES:([p].[ClienteId]))
+                      |                             |    |--Clustered Index Scan(OBJECT:([AlunosTech].[dbo].[Projeto].[PK_Projeto] AS [p]))
+                      |                             |    |--Clustered Index Seek(OBJECT:([AlunosTech].[dbo].[Cliente].[PK_Cliente] AS [c]), SEEK:([c].[Id]=[AlunosTech].[dbo].[Projeto].[ClienteId] as [p].[ClienteId]) ORDERED FORWARD)
+                      |                             |--Index Seek(OBJECT:([AlunosTech].[dbo].[Tarefa].[IX_Tarefa_Projeto] AS [t]), SEEK:([t].[ProjetoId]=[AlunosTech].[dbo].[Projeto].[Id] as [p].[Id]) ORDERED FORWARD)
+                      |--Table Spool
+                           |--Compute Scalar(DEFINE:([Expr1005]=CONVERT_IMPLICIT(int,[Expr1025],0)))
+                                |--Stream Aggregate(GROUP BY:([Expr1011], [Expr1010]) DEFINE:([Expr1025]=Count(*)))
+                                     |--Compute Scalar(DEFINE:([Expr1010]=[AlunosTech].[dbo].[Tarefa].[ProjetoId] as [t].[ProjetoId], [Expr1011]=[AlunosTech].[dbo].[Cliente].[Nome] as [c].[Nome]))
+                                          |--Sort(DISTINCT ORDER BY:([c].[Nome] ASC, [t].[ProjetoId] ASC, [a].[TarefaId] ASC))
+                                               |--Table Spool
+
